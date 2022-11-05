@@ -7,3 +7,193 @@
 .App-header {
   width: 100%;
 }
+
+.Home {
+  box-sizing: border-box;
+  margin: 130px auto;
+  width: 800px;
+  height: 450px;
+  background: #eeeef2;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 308px auto;
+  grid-gap: 60px;
+  padding: 90px 70px;
+  text-align: center;
+}
+
+.Home-image {
+  width: 308px;
+  height: 275px;
+}
+
+.Home-text {
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 54px;
+  color: #113a63;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.InsertingCoins {
+  margin: 130px auto;
+}
+
+.InsertingCoins-container {
+  margin: auto;
+  box-sizing: border-box;
+  width: 800px;
+  height: 290px;
+  background: #eeeef2;
+  border-radius: 24px;
+  padding: 50px 70px;
+  text-align: center;
+  background-image: url("/public/tron.svg");
+  background-repeat: no-repeat;
+  background-position: 30px 20px;
+}
+
+.InsertingCoins-title {
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 90px;
+  color: #113a63;
+}
+
+.InsertingCoins-subtitle {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  color: #6518ff;
+}
+
+.InsertingCoins-button {
+  margin: 140px auto 0 auto;
+}
+
+.ChooseRecipient {
+  margin: 130px auto;
+}
+
+.ChooseRecipient-button {
+  margin: 30px auto;
+}
+
+.ScanQrCode {
+  margin: 130px auto;
+}
+
+.ScanQrCode-title {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 50px;
+  color: #113a63;
+  margin: auto;
+}
+
+.ScanQrCode-qr {
+  margin: 40px auto;
+}
+
+.ConfrmTransaction {
+  margin: 100px auto;
+}
+
+.ConfrmTransaction-container {
+  margin: auto;
+  box-sizing: border-box;
+  width: 800px;
+  height: 460px;
+  background: #eeeef2;
+  border-radius: 24px;
+  padding: 50px 70px;
+  text-align: center;
+  background-image: url("/public/tron.svg");
+  background-repeat: no-repeat;
+  background-position: 30px 20px;
+}
+
+.ConfrmTransaction-title {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 90px;
+  color: #113a63;
+}
+
+.ConfrmTransaction-subtitle {
+  margin-top: 30px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  color: #6518ff;
+}
+
+.ConfrmTransaction-button {
+  margin: 140px auto 0 auto;
+}
+
+.Sending {
+  box-sizing: border-box;
+  margin: 130px auto;
+  width: 700px;
+  height: 700px;
+  background: #eeeef2;
+  border-radius: 24px;
+  padding: 130px 190px;
+  text-align: center;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Sending-image {
+  width: 322px;
+  height: 322px;
+  animation: spin 4s linear infinite;
+}
+
+.Sending-text {
+  margin-top: 60px;
+  font-weight: 700;
+  font-size: 70px;
+  line-height: 70px;
+  color: #113a63;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Sent {
+  box-sizing: border-box;
+  margin: 130px auto;
+  width: 700px;
+  height: 700px;
+  background: #eeeef2;
+  border-radius: 24px;
+  padding: 130px 190px;
+  text-align: center;
+}
+
+.Sent-image {
+  width: 309px;
+  height: 323px;
+}
+
+.Sent-text {
+  margin-top: 60px;
+  font-weight: 700;
+  font-size: 70px;
+  line-height: 70px;
+  color: #113a63;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

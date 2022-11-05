@@ -1,0 +1,32 @@
+<svg width="308" height="275" viewBox="0 0 308 275" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_54_4)">
+<rect x="218" y="6" width="78" height="261" rx="18" fill="#D9D9D9" stroke="#113A63" stroke-width="7"/>
+<rect x="242" y="25" width="30" height="224" rx="10" fill="#D9D9D9" stroke="#113A63" stroke-width="7"/>
+<path d="M225.5 137C225.5 206.136 175.447 261.5 114.5 261.5C53.553 261.5 3.5 206.136 3.5 137C3.5 67.8635 53.553 12.5 114.5 12.5C175.447 12.5 225.5 67.8635 225.5 137Z" fill="#D9D9D9" stroke="#113A63" stroke-width="7"/>
+<path d="M253.5 137C253.5 206.136 203.447 261.5 142.5 261.5C81.553 261.5 31.5 206.136 31.5 137C31.5 67.8635 81.553 12.5 142.5 12.5C203.447 12.5 253.5 67.8635 253.5 137Z" fill="#D9D9D9" stroke="#113A63" stroke-width="7"/>
+<path d="M60 29.5H86.5" stroke="#113A63" stroke-width="7"/>
+<path d="M35 52H61.5" stroke="#113A63" stroke-width="7"/>
+<path d="M15 79H41.5" stroke="#113A63" stroke-width="7"/>
+<path d="M9 102H35.5" stroke="#113A63" stroke-width="7"/>
+<path d="M6 124H32.5" stroke="#113A63" stroke-width="7"/>
+<path d="M6 147H32.5" stroke="#113A63" stroke-width="7"/>
+<path d="M9 168H35.5" stroke="#113A63" stroke-width="7"/>
+<path d="M17 192H43.5" stroke="#113A63" stroke-width="7"/>
+<path d="M30 218H56.5" stroke="#113A63" stroke-width="7"/>
+<path d="M55 241H81.5" stroke="#113A63" stroke-width="7"/>
+<ellipse cx="146" cy="136.5" rx="88" ry="98.5" stroke="#113A63" stroke-width="7" stroke-linecap="round" stroke-dasharray="14 14"/>
+<path d="M125.189 159.665C130.172 165.113 136.147 168.503 143.196 169.793C150.285 170.96 157.056 169.923 163.63 166.519C172.151 162.106 177.528 154.999 179.718 145.116L167.375 142.348C166.233 148.292 163.024 152.629 157.83 155.319C151.418 158.639 144.086 157.599 138.337 152.857L150.673 146.468L150.323 139.034L133.604 147.691C133.229 147.165 132.85 146.435 132.472 145.704C131.716 144.244 131.25 143.146 131.076 142.413L149.905 132.663L149.474 125.27L130.077 135.315C129.939 128.49 133.329 122.515 139.253 119.447C144.285 116.841 149.556 116.684 155.108 119.058L159.89 107.422C150.678 103.547 141.852 103.795 133.412 108.165C127.081 111.444 122.367 116.252 119.307 122.468C116.248 128.684 115.361 135.319 116.604 142.291L111.572 144.897L112.004 152.29L118.497 148.927C118.794 149.7 119.259 150.797 119.974 152.177C120.352 152.907 120.73 153.638 121.105 154.164L115.911 156.853L116.262 164.288L125.189 159.665Z" fill="#113A63"/>
+<mask id="mask0_54_4" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="269" y="0" width="39" height="275">
+<rect x="269" width="39" height="275" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_54_4)">
+<rect x="218" y="6" width="78" height="261" rx="18" fill="#D9D9D9" stroke="#113A63" stroke-width="7"/>
+<rect x="242" y="25" width="30" height="224" rx="10" fill="#D9D9D9" stroke="#113A63" stroke-width="7"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_54_4">
+<rect width="308" height="275" fill="white"/>
+</clipPath>
+</defs>
+</svg>
