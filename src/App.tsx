@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { QrReader } from "react-qr-reader";
 // import { getDeviceList, usb } from "usb";
+import axios from 'axios';
 
 import "./App.css";
 import { truncate } from "./truncate";
@@ -31,6 +32,36 @@ export enum progressType {
 function App() {
   const [progress, setProgress] = useState<progressType>(progressType.HOME);
   const [recipient, setRecipient] = useState<string | undefined>(undefined);
+  const [coins, setCoins] = useState<number>(0);
+  const [exchangeRate, setExchangeRate] = useState<number>(0.058477312648395)
+  console.log(exchangeRate)
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let response = await axios.get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=TRX', {
+        withCredentials: false,
+        headers: { 
+          'X-CMC_PRO_API_KEY': 'f449bd50-934e-41b9-936e-fa4c26863b8c',
+          "Access-Control-Allow-Origin": "*"
+        }
+      })
+      // setExchangeRate(response.data)
+    }
+
+    fetchMyAPI()
+  }, [])
+
+
+  //Test  
+  useEffect (() => {
+    setTimeout(() => {
+      setCoins(2)
+      setProgress(progressType.INSERTING_COINS)
+      setTimeout(() => {
+        setCoins(3)
+      }, 3000)
+    }, 3000)
+  }, []) 
 
   useEffect (() => {
     if(recipient) setProgress(progressType.CONFIRM_TRANSACTION)
@@ -43,7 +74,6 @@ function App() {
       {progress === progressType.HOME && (
         <div
           className="Home"
-          onClick={() => setProgress(progressType.INSERTING_COINS)}
         >
           <img
             className="Home-image"
@@ -57,8 +87,8 @@ function App() {
       {progress === progressType.INSERTING_COINS && (
         <div className="InsertingCoins">
           <div className="InsertingCoins-container">
-            <div className="InsertingCoins-title">41.23 TRX</div>
-            <div className="InsertingCoins-subtitle">2.60€ Inserted</div>
+            <div className="InsertingCoins-title">{(coins / exchangeRate).toFixed(0)} TRX</div>
+            <div className="InsertingCoins-subtitle">{coins.toFixed(2)}€ Inserted</div>
           </div>
 
           <img
@@ -111,7 +141,7 @@ function App() {
         <div className="ConfrmTransaction">
           <div className="ConfrmTransaction-container">
             <div className="ConfrmTransaction-subtitle">Send</div>
-            <div className="ConfrmTransaction-title">41.23 TRX</div>
+            <div className="ConfrmTransaction-title">{(coins / exchangeRate).toFixed(0)} TRX</div>
             <div className="ConfrmTransaction-subtitle">To</div>
             <div className="ConfrmTransaction-title">{recipient ? truncate(recipient) : recipient}</div>
           </div>
