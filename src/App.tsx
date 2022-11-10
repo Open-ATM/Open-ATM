@@ -1,6 +1,22 @@
-import React, { useState } from "react";
+import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import { useState } from "react";
+import { QrReader } from 'react-qr-reader';
+import { getDeviceList, usb } from "usb";
 
 import "./App.css";
+
+const TronWeb = require('tronweb')
+
+dotenv.config()
+
+const devices: usb.Device[] = getDeviceList();
+console.log(devices);
+
+const tronWeb = new TronWeb({
+  fullHost: "https://api.trongrid.io",
+  headers: { "TRON-PRO-API-KEY": process.env.REACT_APP_TRON_API_KEY },
+  privateKey: process.env.REACT_APP_PRIVATE_KEY,
+});
 
 export enum progressType {
   HOME = "HOME",
@@ -14,6 +30,7 @@ export enum progressType {
 
 function App() {
   const [progress, setProgress] = useState<progressType>(progressType.HOME);
+  const [data, setData] = useState("No result");
 
   return (
     <div className="App">
@@ -81,6 +98,23 @@ function App() {
             src="/qr-demo.png"
             onClick={() => setProgress(progressType.CONFIRM_TRANSACTION)}
           />
+
+<>
+      <QrReader
+        onResult={(result, error) => {
+          if (!!result) {
+            setData(result?.text);
+          }
+
+          if (!!error) {
+            console.info(error);
+          }
+        }}
+        style={{ width: '100%' }}
+      />
+      <p>{data}</p>
+    </>
+    
         </div>
       )}
 
