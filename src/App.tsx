@@ -1,4 +1,3 @@
-// import * as dotenv from "dotenv";
 import { useEffect, useState } from "react";
 import { QrReader } from "react-qr-reader";
 // import { getDeviceList, usb } from "usb";
@@ -8,15 +7,16 @@ import "./App.css";
 import { truncate } from "./truncate";
 
 const TronWeb = require("tronweb");
+require('dotenv').config()
 
-// dotenv.config();
 
 // const devices: usb.Device[] = getDeviceList();
 // console.log(devices);
 
 const tronWeb = new TronWeb({
   fullHost: "https://api.trongrid.io",
-  headers: { "TRON-PRO-API-KEY": "25272698-5521-4839-b50c-830ae865719f" }, //process.env.REACT_APP_TRON_API_KEY },
+  headers: { "TRON-PRO-API-KEY": process.env.REACT_APP_TRON_API_KEY },
+  privateKey: process.env.REACT_APP_PRIVATE_KEY,
 });
 
 export enum progressType {
@@ -37,18 +37,17 @@ function App() {
   console.log(exchangeRate)
 
   useEffect(() => {
-    async function fetchMyAPI() {
+    async function fetchExchangeRate() {
       let response = await axios.get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=TRX', {
         withCredentials: false,
         headers: { 
-          'X-CMC_PRO_API_KEY': 'f449bd50-934e-41b9-936e-fa4c26863b8c',
+          'X-CMC_PRO_API_KEY': process.env.REACT_APP_CMC_API_KEY,
           "Access-Control-Allow-Origin": "*"
         }
       })
       // setExchangeRate(response.data)
     }
-
-    fetchMyAPI()
+    fetchExchangeRate()
   }, [])
 
 
