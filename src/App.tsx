@@ -1,21 +1,21 @@
-import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-import { useState } from "react";
-import { QrReader } from 'react-qr-reader';
-import { getDeviceList, usb } from "usb";
+// import * as dotenv from "dotenv";
+import { useEffect, useState } from "react";
+import { QrReader } from "react-qr-reader";
+// import { getDeviceList, usb } from "usb";
 
 import "./App.css";
+import { truncate } from "./truncate";
 
-const TronWeb = require('tronweb')
+const TronWeb = require("tronweb");
 
-dotenv.config()
+// dotenv.config();
 
-const devices: usb.Device[] = getDeviceList();
-console.log(devices);
+// const devices: usb.Device[] = getDeviceList();
+// console.log(devices);
 
 const tronWeb = new TronWeb({
   fullHost: "https://api.trongrid.io",
-  headers: { "TRON-PRO-API-KEY": process.env.REACT_APP_TRON_API_KEY },
-  privateKey: process.env.REACT_APP_PRIVATE_KEY,
+  headers: { "TRON-PRO-API-KEY": "25272698-5521-4839-b50c-830ae865719f" }, //process.env.REACT_APP_TRON_API_KEY },
 });
 
 export enum progressType {
@@ -30,7 +30,11 @@ export enum progressType {
 
 function App() {
   const [progress, setProgress] = useState<progressType>(progressType.HOME);
-  const [data, setData] = useState("No result");
+  const [recipient, setRecipient] = useState<string | undefined>(undefined);
+
+  useEffect (() => {
+    if(recipient) setProgress(progressType.CONFIRM_TRANSACTION)
+  }, [recipient]) 
 
   return (
     <div className="App">
@@ -92,29 +96,14 @@ function App() {
       {progress === progressType.SCAN_QR_CODE && (
         <div className="ScanQrCode">
           <div className="ScanQrCode-title">Please scan your wallet</div>
-          <img
-            className="ScanQrCode-qr"
-            alt="button"
-            src="/qr-demo.png"
-            onClick={() => setProgress(progressType.CONFIRM_TRANSACTION)}
-          />
-
-<>
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            setData(result?.text);
-          }
-
-          if (!!error) {
-            console.info(error);
-          }
-        }}
-        style={{ width: '100%' }}
-      />
-      <p>{data}</p>
-    </>
-    
+            <QrReader
+              onResult={(result, error) => {
+                if (!!result) {
+                  setRecipient(result?.getText());
+                }
+              }}
+              constraints={{ facingMode: "user" }}
+            />
         </div>
       )}
 
@@ -124,7 +113,7 @@ function App() {
             <div className="ConfrmTransaction-subtitle">Send</div>
             <div className="ConfrmTransaction-title">41.23 TRX</div>
             <div className="ConfrmTransaction-subtitle">To</div>
-            <div className="ConfrmTransaction-title">TVxfX...C4CEn</div>
+            <div className="ConfrmTransaction-title">{recipient ? truncate(recipient) : recipient}</div>
           </div>
 
           <img
