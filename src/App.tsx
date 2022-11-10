@@ -150,20 +150,44 @@ function App() {
             className="ConfrmTransaction-button"
             alt="done"
             src="/button-confirm.svg"
-            onClick={() => setProgress(progressType.SENDING)}
+            onClick={async() => {
+              setProgress(progressType.SENDING)
+
+              var fromAddress = "TTcHWUnU5NUeVduHLCkMmNa5JuDL1yNM91";
+              var toAddress = recipient;
+              var amount = Math.round(coins / exchangeRate * 1000000);
+              const tradeobj = await tronWeb.transactionBuilder.sendTrx(
+                    toAddress,
+                    amount,
+                    fromAddress
+              );
+              const signedtxn = await tronWeb.trx.sign(
+                    tradeobj,
+              );
+              await tronWeb.trx.sendRawTransaction(
+                    signedtxn
+              ).then((output: any) => {
+                console.log('- Output:', output, '\n');
+                setProgress(progressType.SENT)
+                setTimeout(() => {
+                  setProgress(progressType.HOME)
+                }, 6000)
+              });
+             
+            }}
           />
         </div>
       )}
 
       {progress === progressType.SENDING && (
-        <div className="Sending" onClick={() => setProgress(progressType.SENT)}>
+        <div className="Sending">
           <img className="Sending-image" alt="loader" src="/loader.svg" />
           <div className="Sending-text">Sending...</div>
         </div>
       )}
 
       {progress === progressType.SENT && (
-        <div className="Sent" onClick={() => setProgress(progressType.HOME)}>
+        <div className="Sent">
           <img className="Sent-image" alt="sent" src="/sent.svg" />
           <div className="Sent-text">Sent</div>
         </div>
