@@ -15,8 +15,8 @@ const TronWeb = require("tronweb");
 
 const tronWeb = new TronWeb({
   fullHost: "https://api.trongrid.io",
-  headers: { "TRON-PRO-API-KEY": "25272698-5521-4839-b50c-830ae865719f" },
-  privateKey: "4b7cb0db88f9c95a860b6977341db71580333c33f9a04b5d204e1e09ba796b07",
+  headers: { "TRON-PRO-API-KEY": "25272698-5521-4839-b50c-830ae865719f" }, //<YOUR_API_KEY>
+  privateKey: "4b7cb0db88f9c95a860b6977341db71580333c33f9a04b5d204e1e09ba796b07", //<YOUR_PRIVATE_KEY>
 });
 
 export enum progressType {
@@ -51,16 +51,24 @@ function App() {
   }, [])
 
 
-  //Test  
-  useEffect (() => {
-    setTimeout(() => {
-      setCoins(2)
-      setProgress(progressType.INSERTING_COINS)
-      setTimeout(() => {
-        setCoins(3)
-      }, 60000)
-    }, 5000)
-  }, []) 
+  const websocket = new WebSocket(`ws://localhost:8080`)
+  websocket.addEventListener('message', (event) => {
+    try {
+      if (typeof event.data === 'string') {
+        const dataObject = JSON.parse(event.data)
+        if (typeof dataObject === 'object' && typeof dataObject.message === 'string') {
+          const message = JSON.parse(dataObject.message)
+          if (message.coins && message.coins > 0) {
+            setCoins(message.coins)
+            setProgress(progressType.INSERTING_COINS)      
+          }
+        }
+      }
+    } catch (e: any) {
+      console.log(e)
+    }
+  })
+
 
   useEffect (() => {
     if(recipient) setProgress(progressType.CONFIRM_TRANSACTION)
