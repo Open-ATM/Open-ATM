@@ -46,17 +46,14 @@ function App() {
     fetchExchangeRate()
   }, [])
 
-  const websocket = new WebSocket(`ws://localhost:8080`)
+  const websocket = new WebSocket(`ws://localhost:8999`)
   websocket.addEventListener('message', (event) => {
     try {
       if (typeof event.data === 'string') {
         const dataObject = JSON.parse(event.data)
-        if (typeof dataObject === 'object' && typeof dataObject.message === 'string') {
-          const message = JSON.parse(dataObject.message)
-          if (message.coins && message.coins > 0) {
-            setCoins(message.coins)
-            setProgress(progressType.INSERTING_COINS)      
-          }
+        if (dataObject.coins && dataObject.coins > 0) {
+          setCoins(dataObject.coins)
+          setProgress(progressType.INSERTING_COINS)      
         }
       }
     } catch (e: any) {
