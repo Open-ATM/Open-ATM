@@ -1,30 +1,33 @@
 import * as express from 'express';
 import * as http from 'http';
 import * as WebSocket from 'ws';
+import { findBySerialNumber, WebUSBDevice } from 'usb';
 
 const app = express();
 
-//initialize a simple http server
 const server = http.createServer(app);
-
-//initialize the WebSocket server instance
 const wss = new WebSocket.Server({ server });
+let coinAcceptor: WebUSBDevice;
 
-wss.on('connection', (ws: WebSocket) => {
+(async () => {
+    const device = await findBySerialNumber('COIN_ACCEPTOR');
+    if(device) coinAcceptor = await WebUSBDevice.createInstance(device);
+})();
+ 
+wss.on('connection', async (ws: WebSocket) => {
 
-    //connection is up, let's add a simple simple event
     ws.on('message', (message: string) => {
-
-        //log the received message and send it back to the client
         console.log('received: %s', message);
         ws.send(`Hello, you sent -> ${message}`);
     });
 
-    //send immediatly a feedback to the incoming connection    
-    ws.send('Hi there, I am a WebSocket server');
+    if (coinAcceptor) {
+        await coinAcceptor.open()
+        const coinIn = coinAcceptor.transferIn(16, 256)
+        ws.send({coins: coinIn});
+    }
 });
 
-//start our server
 server.listen(process.env.PORT || 8999, () => {
     //@ts-ignore
     console.log(`Server started on port ${server?.address()?.port} :)`);
