@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { QrReader } from "react-qr-reader";
-// import { getDeviceList, usb } from "usb";
+import { findByIds } from "usb";
 import axios from 'axios';
 
 import "./App.css";
@@ -8,10 +8,6 @@ import { truncate } from "./truncate";
 
 const TronWeb = require("tronweb");
 // require('dotenv').config()
-
-
-// const devices: usb.Device[] = getDeviceList();
-// console.log(devices);
 
 const tronWeb = new TronWeb({
   fullHost: "https://api.trongrid.io",
@@ -50,7 +46,6 @@ function App() {
     fetchExchangeRate()
   }, [])
 
-
   const websocket = new WebSocket(`ws://localhost:8080`)
   websocket.addEventListener('message', (event) => {
     try {
@@ -68,7 +63,6 @@ function App() {
       console.log(e)
     }
   })
-
 
   useEffect (() => {
     if(recipient) setProgress(progressType.CONFIRM_TRANSACTION)
