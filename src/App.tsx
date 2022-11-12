@@ -7,7 +7,7 @@ import "./App.css";
 import { truncate } from "./truncate";
 
 const TronWeb = require("tronweb");
-require('dotenv').config()
+// require('dotenv').config()
 
 
 // const devices: usb.Device[] = getDeviceList();
@@ -15,8 +15,8 @@ require('dotenv').config()
 
 const tronWeb = new TronWeb({
   fullHost: "https://api.trongrid.io",
-  headers: { "TRON-PRO-API-KEY": process.env.REACT_APP_TRON_API_KEY },
-  privateKey: process.env.REACT_APP_PRIVATE_KEY,
+  headers: { "TRON-PRO-API-KEY": "25272698-5521-4839-b50c-830ae865719f" },
+  privateKey: "4b7cb0db88f9c95a860b6977341db71580333c33f9a04b5d204e1e09ba796b07",
 });
 
 export enum progressType {
@@ -41,7 +41,7 @@ function App() {
       let response = await axios.get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=TRX', {
         withCredentials: false,
         headers: { 
-          'X-CMC_PRO_API_KEY': process.env.REACT_APP_CMC_API_KEY,
+          'X-CMC_PRO_API_KEY': "f449bd50-934e-41b9-936e-fa4c26863b8c",
           "Access-Control-Allow-Origin": "*"
         }
       })
@@ -58,8 +58,8 @@ function App() {
       setProgress(progressType.INSERTING_COINS)
       setTimeout(() => {
         setCoins(3)
-      }, 3000)
-    }, 3000)
+      }, 60000)
+    }, 5000)
   }, []) 
 
   useEffect (() => {
