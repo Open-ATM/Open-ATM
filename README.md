@@ -27,6 +27,22 @@ Here are all the pieces:
 Here is the final ATM:
 ![](https://openatm.io/result.png)
 
+## User experience
+
+First, insert some coins into the ATM. The screen will display your balance in fiat along with its value in TRX at the current exchange rate. The ATM connects to the CoinMarketCap API to get the rates in real-time.
+
+On the next screen, the ATM asks where to send your TRX. You can choose your own wallet or one of the compatible charities' wallets, e.g. Red Cross or Unicef. This allows for easy and quick donations!
+
+If you choose your wallet, the next screen activates the table's camera to read the QR code representing your public address. You will need a Tron wallet on your smartphone such as `TronLink` or `Trust Wallet`. Open the wallet then display your public address and scan your QR code.
+
+The next screen is a confirmation of your amount and address. Clicking `confirm` triggers the transaction on Tron. A few seconds later, you should see your TRX in your wallet!
+
+![](https://openatm.io/screens.png)
+
+## Owner experience
+
+The idea is that the owner of the ATM and its users are different people. The owner fetches the coins from the ATM and sends TRX to the ATM wallet. The users put the coins in and either get TRX to their wallet or send it to a charity. If you build this ATM at home, it’s not for you to use but for your friends and family. The owner just has to empty the coins from time to time and always make sure there are enough TRX in the ATM wallet to payout the users. The ATM owner is basically like a bank.
+
 ## Setup the code
 On the tablet, copy and run the code that reads the input from the coin acceptor:
 ```
@@ -41,22 +57,10 @@ Then run the frontend :
 ```
 cd Open-ATM/frontend
 yarn install
-yarn run
+yarn start
 ```
 
 Then open `localhost:3000` to start the ATM. It's now ready for use!
-
-## User experience
-
-First, insert some coins into the ATM. The screen will display your balance in fiat along with its value in TRX at the current exchange rate. The ATM connects to the CoinMarketCap API to get the rates in real-time.
-
-On the next screen, the ATM asks where to send your TRX. You can choose your own wallet or one of the compatible charities' wallets, e.g. Red Cross or Unicef. This allows for easy and quick donations!
-
-If you choose your wallet, the next screen activates the table's camera to read the QR code representing your public address. You will need a Tron wallet on your smartphone such as `TronLink` or `Trust Wallet`. Open the wallet then display your public address and scan your QR code.
-
-The next screen is a confirmation of your amount and address. Clicking `confirm` triggers the transaction on Tron. A few seconds later, you should see your TRX in your wallet!
-
-![](https://openatm.io/screens.png)
 
 ## Conclusion
 
